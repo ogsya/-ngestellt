@@ -1,0 +1,30 @@
+---
+import Container from "./Container.astro"
+import Topic from "./Topic.astro";
+---
+<Container>
+<div class="relative flex flex-col items-center md:flex-row">
+    <Topic title="Kontakt" description="Verbinde dich mit uns und lass uns über deine nächsten Schritte sprechen. Wir kontaktieren dich innerhalb 24 Stunden - versprochen!" />
+</div>
+
+<div class="relative flex flex-col items-center md:flex-row my-6 bg-zinc-100 rounded-[45px]">
+    <div class="row items-center py-12 px-4 md:px-20 md:w-8/12 md:py-10">
+        <!-- Google Form embedded starts here -->
+        <div style="max-width: 100%; overflow: hidden;">
+            <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfAv1b7wiozjBvVMwfzk8jOXinqDolvzVhFQcW18D9769K4aQ/viewform?embedded=true" 
+                    width="100%" 
+                    height="1000" 
+                    frameborder="0" 
+                    marginheight="0" 
+                    marginwidth="0" 
+                    style="border-radius: 10px; border: 1px solid #ccc; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+                Wird geladen…
+            </iframe>
+        </div>
+        <!-- Google Form embedded ends here -->
+    </div>
+    <div class="hidden md:grid md:justify-items-end md:w-4/12 md:py-2">
+        <img src="./clients/contact.svg" alt="c" width="80%">
+    </div>
+</div>
+</Container>
