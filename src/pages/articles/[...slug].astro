@@ -1,10 +1,17 @@
 ---
+// Import necessary modules
 import Layout from "../../layouts/Layout.astro";
 import Container from "../../components/Container.astro";
 import { getEntry } from 'astro:content';
 import { formatDate } from "../../utils";
-
 import "../../styles/global.css";
+export async function getStaticPaths() {
+  const paths = await someFunctionToGetPaths(); // Replace with your function to get paths
+  return {
+    paths,
+    fallback: false,
+  };
+}
 
 const { slug } = Astro.params;
 
@@ -20,6 +27,9 @@ if(entry === undefined) {
 
 const { Content } = await entry.render();
 ---
+export async function getStaticPaths() {
+  // Replace this with your logic to fetch the list of slugs
+  const slugs = ['article-1', 'article-2', /* ...other slugs */];
 
 <Layout title="Willkommen auf unserem Blog">
 	<main class="space-y-40 mb-40 pt-24">
