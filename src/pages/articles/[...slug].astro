@@ -4,7 +4,17 @@ import Container from "../../components/Container.astro";
 import { getEntry } from 'astro:content';
 import { formatDate } from "../../utils";
 import "../../styles/global.css";
+import { getCollection } from 'astro:content';
 
+export async function getStaticPaths() {
+  const articles = await getCollection('blog');  // Assuming 'blog' is your collection name
+
+  // Generate paths for each article based on its slug
+  return articles.map((article) => ({
+    params: { slug: article.slug }, // Slug is used as the dynamic param
+    props: { entry: article },      // Pass entry data as props
+  }));
+}
 
 const { slug } = Astro.params;
 
