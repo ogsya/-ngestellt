@@ -1,6 +1,8 @@
 import { parse } from 'devalue';
 import { escape } from 'html-escaper';
-import { D as DEFAULT_404_COMPONENT } from './astro/server_Dal-hXxL.mjs';
+import { D as DEFAULT_404_COMPONENT } from './astro/server_DMXU4mFC.mjs';
+
+const NOOP_MIDDLEWARE_FN = (_, next) => next();
 
 const ACTION_QUERY_PARAMS = {
   actionName: "_astroAction",
@@ -275,4 +277,4 @@ const default404Instance = {
   default: default404Page
 };
 
-export { DEFAULT_404_ROUTE as D, default404Instance as a, deserializeActionResult as d, ensure404Route as e, getActionQueryString as g };
+export { DEFAULT_404_ROUTE as D, NOOP_MIDDLEWARE_FN as N, default404Instance as a, deserializeActionResult as d, ensure404Route as e, getActionQueryString as g };

@@ -1,5 +1,5 @@
-import { A as AstroError, f as NoImageMetadata, F as FailedToFetchRemoteImageDimensions, g as ExpectedImageOptions, h as ExpectedImage, j as ExpectedNotESMImage, k as resolveSrc, l as isRemoteImage, m as isESMImportedImage, n as isLocalService, D as DEFAULT_HASH_PROPS, o as InvalidImageService, q as ImageMissingAlt, i as isRemotePath, s as isRemoteAllowed } from '../chunks/astro/assets-service_pkTuGmSk.mjs';
-import { c as createComponent, r as renderTemplate, m as maybeRenderHead, d as addAttribute, s as spreadAttributes, b as createAstro } from '../chunks/astro/server_Dal-hXxL.mjs';
+import { A as AstroError, f as NoImageMetadata, F as FailedToFetchRemoteImageDimensions, g as ExpectedImageOptions, h as ExpectedImage, j as ExpectedNotESMImage, k as resolveSrc, l as isRemoteImage, i as isRemotePath, m as isESMImportedImage, n as isLocalService, D as DEFAULT_HASH_PROPS, o as InvalidImageService, q as ImageMissingAlt, s as isRemoteAllowed } from '../chunks/astro/assets-service_BsXHqo0N.mjs';
+import { c as createComponent, r as renderTemplate, m as maybeRenderHead, d as addAttribute, s as spreadAttributes, b as createAstro } from '../chunks/astro/server_DMXU4mFC.mjs';
 import 'clsx';
 import * as mime from 'mrmime';
 export { renderers } from '../renderers.mjs';
@@ -842,7 +842,7 @@ async function getConfiguredImageService() {
   if (!globalThis?.astroAsset?.imageService) {
     const { default: service } = await import(
       // @ts-expect-error
-      '../chunks/astro/assets-service_pkTuGmSk.mjs'
+      '../chunks/astro/assets-service_BsXHqo0N.mjs'
     ).then(n => n.a0).catch((e) => {
       const error = new AstroError(InvalidImageService);
       error.cause = e;
@@ -879,7 +879,7 @@ async function getImage$1(options, imageConfig) {
     ...options,
     src: await resolveSrc(options.src)
   };
-  if (options.inferSize && isRemoteImage(resolvedOptions.src)) {
+  if (options.inferSize && isRemoteImage(resolvedOptions.src) && isRemotePath(resolvedOptions.src)) {
     const result = await inferRemoteSize(resolvedOptions.src);
     resolvedOptions.width ??= result.width;
     resolvedOptions.height ??= result.height;
