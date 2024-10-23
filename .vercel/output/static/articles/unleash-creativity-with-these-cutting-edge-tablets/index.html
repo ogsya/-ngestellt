@@ -1,0 +1,183 @@
+<!DOCTYPE html><html lang="en"> <head><meta charset="UTF-8"><meta name="description" content="Astro description"><meta name="viewport" content="width=device-width"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><meta name="generator" content="Astro v4.15.5"><title>Ångestellt</title><meta name="description" content="Du liebst Wasser? Wir finden den passenden Job der dich glücklich macht. Unser Recruiting Team hilft dir, deinen perfekten Job zu finden, und das - kostenlos!"><link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet"><meta name="astro-view-transitions-enabled" content="true"><meta name="astro-view-transitions-fallback" content="animate"><link rel="stylesheet" href="/_astro/about.CSexeDuL.css"><script type="module" src="/_astro/hoisted.CmkSwYHY.js"></script></head> <body class="bg-white font-SpaceGrotesk"> <div class="mt-20"> <nav class="w-full top-0 left-0 z-50 fixed bg-white"> <div class="max-w-screen-2xl mx-auto px-8 lg:px-10 xl:px-12">  <header class="flex flex-col lg:flex-row justify-between items-center my-5">  <div class="flex w-full lg:w-auto items-center justify-between"> <a href="/" class="flex items-center space-x-3 rtl:space-x-reverse"> <!-- Lime box behind logo --> <div class="bg-lime p-2"> <img src="/Logo3.svg" class="h-16" alt="Logo"> </div> </a> <div class="block lg:hidden"> <button id="astronav-menu" aria-label="Toggle Menu">  <svg fill="currentColor" class="w-8 h-8 text-black" width="24" height="24" viewBox="0 0 24 24" xmlns="https://www.w3.org/2000/svg"> <title>Toggle Menu</title> <path class="astronav-close-icon astronav-toggle hidden" fill-rule="evenodd" clip-rule="evenodd" d="M18.278 16.864a1 1 0 01-1.414 1.414l-4.829-4.828-4.828 4.828a1 1 0 01-1.414-1.414l4.828-4.829-4.828-4.828a1 1 0 011.414-1.414l4.829 4.828 4.828-4.828a1 1 0 111.414 1.414l-4.828 4.829 4.828 4.828z"></path> <path class="astronav-open-icon astronav-toggle" fill-rule="evenodd" d="M4 5h16a1 1 0 010 2H4a1 1 0 110-2zm0 6h16a1 1 0 010 2H4a1 1 0 010-2zm0 6h16a1 1 0 010 2H4a1 1 0 010-2z"></path> </svg>  </button> </div> </div> <nav class="astronav-items astronav-toggle hidden w-full lg:w-auto mt-2 lg:flex lg:mt-0">  <ul class="font-medium flex flex-col p-4 lg:p-0 mt-4 border rounded-lg lg:flex-row lg:space-x-8 lg:mt-0 lg:border-0"> <li> <a href="/about" class="block py-2 px-3 text-black rounded lg:bg-transparent lg:p-0">Unsere Mission</a> </li><li> <a href="/bewerber" class="block py-2 px-3 text-black rounded lg:bg-transparent lg:p-0">Für Bewerber</a> </li><li> <a href="/unternehmen" class="block py-2 px-3 text-black rounded lg:bg-transparent lg:p-0">Für Unternehmen</a> </li><li> <a href="/pricing" class="block py-2 px-3 text-black rounded lg:bg-transparent lg:p-0">Offene Positionen</a> </li><li> <a href="/articles" class="block py-2 px-3 text-black rounded lg:bg-transparent lg:p-0">Aktuelle Themen</a> </li> <div class="lg:hidden flex items-center justify-center mt-3 gap-4"> <a class="px-9 py-5 rounded-2xl border border-zinc-900 bg-white hover:bg-black text-black hover:text-white inline-flex" href="https://docs.google.com/forms/d/e/1FAIpQLSfAv1b7wiozjBvVMwfzk8jOXinqDolvzVhFQcW18D9769K4aQ/viewform?embedded=true" target="_blank"><h2 class="text-center text-xl font-normal leading-7">Kontaktiere uns in 2 Minuten</h2> </a> </div> </ul>  </nav>  <script>(function(){const closeOnClick = false;
+
+["DOMContentLoaded", "astro:after-swap"].forEach((event) => {
+  document.addEventListener(event, addListeners);
+});
+
+// Function to clone and replace elements
+function cloneAndReplace(element) {
+  const clone = element.cloneNode(true);
+  element.parentNode.replaceChild(clone, element);
+}
+
+function addListeners() {
+  // Clean up existing listeners
+  const oldMenuButton = document.getElementById("astronav-menu");
+  if (oldMenuButton) {
+    cloneAndReplace(oldMenuButton);
+  }
+
+  const oldDropdownMenus = document.querySelectorAll(".astronav-dropdown");
+  oldDropdownMenus.forEach((menu) => {
+    cloneAndReplace(menu);
+  });
+
+  // Mobile nav toggle
+  const menuButton = document.getElementById("astronav-menu");
+  menuButton && menuButton.addEventListener("click", toggleMobileNav);
+
+  // Dropdown menus
+  const dropdownMenus = document.querySelectorAll(".astronav-dropdown");
+  dropdownMenus.forEach((menu) => {
+    const button = menu.querySelector("button");
+    button &&
+      button.addEventListener("click", (event) =>
+        toggleDropdownMenu(event, menu, dropdownMenus)
+      );
+
+    // Handle Submenu Dropdowns
+    const dropDownSubmenus = menu.querySelectorAll(
+      ".astronav-dropdown-submenu"
+    );
+
+    dropDownSubmenus.forEach((submenu) => {
+      const submenuButton = submenu.querySelector("button");
+      submenuButton &&
+        submenuButton.addEventListener("click", (event) => {
+          event.stopImmediatePropagation();
+          toggleSubmenuDropdown(event, submenu);
+        });
+    });
+  });
+
+  // Clicking away from dropdown will remove the dropdown class
+  document.addEventListener("click", closeAllDropdowns);
+
+  if (closeOnClick) {
+    handleCloseOnClick();
+  }
+}
+
+function toggleMobileNav() {
+  [...document.querySelectorAll(".astronav-toggle")].forEach((el) => {
+    el.classList.toggle("hidden");
+  });
+}
+
+function toggleDropdownMenu(event, menu, dropdownMenus) {
+  toggleMenu(menu);
+
+  // Close one dropdown when selecting another
+  Array.from(dropdownMenus)
+    .filter((el) => el !== menu && !menu.contains(el))
+    .forEach(closeMenu);
+
+  event.stopPropagation();
+}
+
+function toggleSubmenuDropdown(event, submenu) {
+  event.stopPropagation();
+  toggleMenu(submenu);
+
+  // Close sibling submenus at the same nesting level
+  const siblingSubmenus = submenu
+    .closest(".astronav-dropdown")
+    .querySelectorAll(".astronav-dropdown-submenu");
+  Array.from(siblingSubmenus)
+    .filter((el) => el !== submenu && !submenu.contains(el))
+    .forEach(closeMenu);
+}
+
+function closeAllDropdowns(event) {
+  const dropdownMenus = document.querySelectorAll(".dropdown-toggle");
+  const dropdownParent = document.querySelectorAll(
+    ".astronav-dropdown, .astronav-dropdown-submenu"
+  );
+  const isButtonInsideDropdown = [
+    ...document.querySelectorAll(
+      ".astronav-dropdown button, .astronav-dropdown-submenu button, #astronav-menu"
+    ),
+  ].some((button) => button.contains(event.target));
+  if (!isButtonInsideDropdown) {
+    dropdownMenus.forEach((d) => {
+      // console.log("I ran", d);
+      // if (!d.contains(event.target)) {
+      d.classList.remove("open");
+      d.removeAttribute("open");
+      d.classList.add("hidden");
+      // }
+    });
+    dropdownParent.forEach((d) => {
+      d.classList.remove("open");
+      d.removeAttribute("open");
+      d.setAttribute("aria-expanded", "false");
+    });
+  }
+}
+
+function toggleMenu(menu) {
+  menu.classList.toggle("open");
+  const expanded = menu.getAttribute("aria-expanded") === "true";
+  menu.setAttribute("aria-expanded", expanded ? "false" : "true");
+  menu.hasAttribute("open")
+    ? menu.removeAttribute("open")
+    : menu.setAttribute("open", "");
+
+  const dropdownToggle = menu.querySelector(".dropdown-toggle");
+  const dropdownExpanded = dropdownToggle.getAttribute("aria-expanded");
+  dropdownToggle.classList.toggle("hidden");
+  dropdownToggle.setAttribute(
+    "aria-expanded",
+    dropdownExpanded === "true" ? "false" : "true"
+  );
+}
+
+function closeMenu(menu) {
+  // console.log("closing", menu);
+  menu.classList.remove("open");
+  menu.removeAttribute("open");
+  menu.setAttribute("aria-expanded", "false");
+  const dropdownToggles = menu.querySelectorAll(".dropdown-toggle");
+  dropdownToggles.forEach((toggle) => {
+    toggle.classList.add("hidden");
+    toggle.setAttribute("aria-expanded", "false");
+  });
+}
+
+function handleCloseOnClick() {
+  const navMenuItems = document.querySelector(".astronav-items");
+  const navToggle = document.getElementById("astronav-menu");
+  const navLink = navMenuItems && navMenuItems.querySelectorAll("a");
+
+  const MenuIcons = navToggle.querySelectorAll(".astronav-toggle");
+
+  navLink &&
+    navLink.forEach((item) => {
+      item.addEventListener("click", () => {
+        navMenuItems?.classList.add("hidden");
+        MenuIcons.forEach((el) => {
+          el.classList.toggle("hidden");
+        });
+      });
+    });
+}
+})();</script> <div> <div class="hidden lg:flex items-center gap-4"> <a class="px-9 py-5 rounded-2xl border border-zinc-900 bg-white hover:bg-lime text-black hover:text-black inline-flex" href="https://docs.google.com/forms/d/e/1FAIpQLSfAv1b7wiozjBvVMwfzk8jOXinqDolvzVhFQcW18D9769K4aQ/viewform?embedded=true" target="_blank"><h2 class="text-center text-xl font-normal leading-7">Kontaktiere uns in 2 Minuten</h2> </a> </div> </div> </header>  </div> </nav> </div>  <main class="space-y-40 mb-40 pt-24"> <div class="max-w-screen-2xl mx-auto px-8 lg:px-10 xl:px-12">  <section class="bg-white"> <div class="gap-16 items-center py-8 px-4 mx-auto max-w-screen-xl lg:grid lg:grid-cols-1 lg:py-16 lg:px-6"> <div class="font-light text-gray-500 sm:text-lg"> <a href="/articles" class="inline-flex items-center font-medium text-black hover:text-lime my-4"> <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="h-6 w-6"> <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16l-4-4m0 0l4-4m-4 4h18"></path> </svg> <span class="ml-1 font-bold text-lg">Alle Artikel</span> </a> <h2 class="mb-4 text-4xl tracking-tight font-extrabold text-gray-900">Die Herausforderungen des Personalwesens in Deutschland – Warum Unternehmen jetzt handeln müssen</h2> <h3 class="text-lg mb-2">Geschrieben von Siyar Süleyman am September 10, 2024</h3> <img src="/blog/image4.png" alt="Article Image" class="w-full h-auto rounded-xl my-6"> <div class="content"> <p>In the world of digital creativity, tablets have become indispensable tools for artists, designers, and anyone seeking to unleash their artistic potential. In 2024, the market is brimming with cutting-edge tablets that offer new dimensions of creativity. Let’s dive into the exciting realm of tablet technology and discover the tools that can help you bring your artistic visions to life.</p>
+<h2 id="1-der-anhaltende-fachkräftemangel"><strong>1. Der anhaltende Fachkräftemangel</strong></h2>
+<p>Laut aktuellen Studien wird sich der Fachkräftemangel in Deutschland in den kommenden Jahren weiter verschärfen. Viele Unternehmen sehen sich gezwungen, ihre Recruiting-Prozesse zu überdenken. Während früher eine einfache Stellenausschreibung oft ausreichte, um qualifizierte Bewerbungen zu erhalten, ist dies heute bei weitem nicht mehr der Fall. Stattdessen dauert es oft Monate, bis eine vakante Position besetzt werden kann. Diese Verzögerungen wirken sich nicht nur auf die Produktivität aus, sondern auch auf die Innovationskraft und Wettbewerbsfähigkeit von Unternehmen.</p>
+<h2 id="2-zeit-ist-geld--und-das-gilt-besonders-im-recruiting"><strong>2. Zeit ist Geld – und das gilt besonders im Recruiting</strong></h2>
+<p>TDie Geschwindigkeit, mit der offene Stellen besetzt werden können, spielt eine entscheidende Rolle. Jede unbesetzte Stelle bedeutet nicht nur, dass wichtige Aufgaben liegen bleiben, sondern auch, dass die vorhandenen Mitarbeiter zusätzliche Lasten schultern müssen. Dadurch steigt die Gefahr von Überlastung und Burnout, was wiederum die Produktivität des gesamten Teams beeinträchtigen kann.</p>
+<p>Hier zeigt sich, wie wertvoll ein effizienter und zielgerichteter Recruiting-Prozess ist. Spezialisierte Headhunter und Recruiting-Agenturen verfügen über eingespielte Prozesse, die es ihnen ermöglichen, in kürzester Zeit qualifizierte Kandidaten zu identifizieren und an Unternehmen zu vermitteln. Die Zeit, die Unternehmen oft in aufwändige und erfolglose Suchprozesse investieren, kann so deutlich reduziert werden.</p>
+<h2 id="3-effiziente-ressourcennutzung-durch-externe-expertise"><strong>3. Effiziente Ressourcennutzung durch externe Expertise</strong></h2>
+<p>Das Recruiting ist ein zeitintensiver und oft ressourcenaufwändiger Prozess. Von der Erstellung der Stellenanzeige über das Sichten der Bewerbungen bis hin zu den Vorstellungsgesprächen – all das erfordert viel Engagement und Zeit, die in anderen Bereichen oft dringender benötigt wird. Gerade kleine und mittelständische Unternehmen (KMUs) haben nicht immer die internen Kapazitäten, um diesen Aufwand zu stemmen.</p>
+<p>Eine Zusammenarbeit mit einem externen Recruiting-Partner kann hier Abhilfe schaffen. Headhunter und Recruiter verfügen über die nötigen Ressourcen, um den gesamten Prozess professionell abzuwickeln – von der Identifikation potenzieller Kandidaten bis hin zur Begleitung im Bewerbungsprozess. Unternehmen können sich so auf ihre Kernkompetenzen konzentrieren, während die Personalsuche von Experten übernommen wird.</p>
+<h2 id="4-ein-starkes-netzwerk-als-schlüssel-zum-erfolg"><strong>4. Ein starkes Netzwerk als Schlüssel zum Erfolg</strong></h2>
+<p>Ein weiterer wichtiger Aspekt im Recruiting ist das Netzwerk. Während interne HR-Abteilungen oft auf klassische Methoden wie Jobportale und soziale Netzwerke setzen, haben Headhunter und Recruiting-Agenturen Zugang zu einem weit größeren Pool an potenziellen Kandidaten. Durch ihre langjährige Erfahrung und die intensive Pflege ihrer Netzwerke sind sie in der Lage, auch passive Kandidaten – also solche, die nicht aktiv auf Jobsuche sind – anzusprechen und für vakante Positionen zu gewinnen.</p>
+<p>Gerade in spezialisierten Branchen, wie etwa der Wasserwirtschaft, ist es von unschätzbarem Wert, auf ein solches Netzwerk zurückgreifen zu können. Oft sind es nicht die aktiv suchenden Bewerber, sondern die „Hidden Gems“ im Markt, die sich als ideale Besetzung für eine Position herausstellen. Hier zahlt sich das breite Netzwerk eines erfahrenen Recruiting-Partners aus.</p>
+<h2 id="5-eine-strategische-entscheidung"><strong>5. Eine strategische Entscheidung</strong></h2>
+<p>Die Herausforderungen im deutschen Personalwesen werden in den kommenden Jahren nicht weniger werden. Unternehmen, die auf alte Methoden setzen, laufen Gefahr, im Wettbewerb um die besten Talente zurückzufallen. Effizienz, Geschwindigkeit und ein starkes Netzwerk sind heute mehr denn je entscheidend, um die richtigen Mitarbeiter zu finden.</p>
+<p>Eine Zusammenarbeit mit erfahrenen Headhuntern und Recruitern bietet Unternehmen die Möglichkeit, diese Herausforderungen zu meistern und sich langfristig auf dem Markt zu behaupten. Indem sie auf externe Expertise setzen, können Unternehmen sicherstellen, dass sie die besten Talente gewinnen – und das, ohne wertvolle interne Ressourcen zu binden.</p>
+<p>In einer Welt, in der Zeit und Effizienz immer wichtiger werden, ist es ratsam, auf die Unterstützung von Profis zu setzen.</p> </div> </div> </div> </section>  </div> </main>  <footer class="bg-lime bg-fixed bg-bottom text-black"> <div class="max-w-screen-2xl mx-auto px-8 lg:px-10 xl:px-12">  <div class="py-6"> <div class="flex flex-col items-center justify-between md:flex-row"> <div class="flex items-center space-x-3 rtl:space-x-reverse"> <img class="h-21" src="/Logo3.svg" alt="Logo"> </div> <div class="flex mt-4 md:m-0"> <div class="-mx-4">
+@ <span id="currentYear"></span> Ångestellt | Made with <a href="https://astro.build/" target="_blank" rel="noopener noreferrer" class="underline">Passion</a> </div> </div> </div> <!-- Add the Impressum link here --> <div class="text-center mt-4"> <a href="/impressum" class="underline text-black hover:text-gray-700">Impressum</a> </div> </div>  </div> </footer> <script>
+    const year = new Date().getFullYear();
+    document.getElementById("currentYear").innerHTML = `${year}`;
+</script> </body></html>

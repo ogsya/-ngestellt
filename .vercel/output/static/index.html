@@ -1,0 +1,183 @@
+<!DOCTYPE html><!-- POSITIVUS Official Astro theme --><html lang="en"> <head><meta charset="UTF-8"><meta name="description" content="Astro description"><meta name="viewport" content="width=device-width"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><meta name="generator" content="Astro v4.15.5"><title>Ångestellt</title><meta name="description" content="Du liebst Wasser? Wir finden den passenden Job der dich glücklich macht. Unser Recruiting Team hilft dir, deinen perfekten Job zu finden, und das - kostenlos!"><link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet"><meta name="astro-view-transitions-enabled" content="true"><meta name="astro-view-transitions-fallback" content="animate"><link rel="stylesheet" href="/_astro/about.CSexeDuL.css"><script type="module" src="/_astro/hoisted.CntnL8WP.js"></script></head> <body class="bg-white font-SpaceGrotesk"> <div class="mt-20"> <nav class="w-full top-0 left-0 z-50 fixed bg-white"> <div class="max-w-screen-2xl mx-auto px-8 lg:px-10 xl:px-12">  <header class="flex flex-col lg:flex-row justify-between items-center my-5">  <div class="flex w-full lg:w-auto items-center justify-between"> <a href="/" class="flex items-center space-x-3 rtl:space-x-reverse"> <!-- Lime box behind logo --> <div class="bg-lime p-2"> <img src="/Logo3.svg" class="h-16" alt="Logo"> </div> </a> <div class="block lg:hidden"> <button id="astronav-menu" aria-label="Toggle Menu">  <svg fill="currentColor" class="w-8 h-8 text-black" width="24" height="24" viewBox="0 0 24 24" xmlns="https://www.w3.org/2000/svg"> <title>Toggle Menu</title> <path class="astronav-close-icon astronav-toggle hidden" fill-rule="evenodd" clip-rule="evenodd" d="M18.278 16.864a1 1 0 01-1.414 1.414l-4.829-4.828-4.828 4.828a1 1 0 01-1.414-1.414l4.828-4.829-4.828-4.828a1 1 0 011.414-1.414l4.829 4.828 4.828-4.828a1 1 0 111.414 1.414l-4.828 4.829 4.828 4.828z"></path> <path class="astronav-open-icon astronav-toggle" fill-rule="evenodd" d="M4 5h16a1 1 0 010 2H4a1 1 0 110-2zm0 6h16a1 1 0 010 2H4a1 1 0 010-2zm0 6h16a1 1 0 010 2H4a1 1 0 010-2z"></path> </svg>  </button> </div> </div> <nav class="astronav-items astronav-toggle hidden w-full lg:w-auto mt-2 lg:flex lg:mt-0">  <ul class="font-medium flex flex-col p-4 lg:p-0 mt-4 border rounded-lg lg:flex-row lg:space-x-8 lg:mt-0 lg:border-0"> <li> <a href="/about" class="block py-2 px-3 text-black rounded lg:bg-transparent lg:p-0">Unsere Mission</a> </li><li> <a href="/bewerber" class="block py-2 px-3 text-black rounded lg:bg-transparent lg:p-0">Für Bewerber</a> </li><li> <a href="/unternehmen" class="block py-2 px-3 text-black rounded lg:bg-transparent lg:p-0">Für Unternehmen</a> </li><li> <a href="/pricing" class="block py-2 px-3 text-black rounded lg:bg-transparent lg:p-0">Offene Positionen</a> </li><li> <a href="/articles" class="block py-2 px-3 text-black rounded lg:bg-transparent lg:p-0">Aktuelle Themen</a> </li> <div class="lg:hidden flex items-center justify-center mt-3 gap-4"> <a class="px-9 py-5 rounded-2xl border border-zinc-900 bg-white hover:bg-black text-black hover:text-white inline-flex" href="https://docs.google.com/forms/d/e/1FAIpQLSfAv1b7wiozjBvVMwfzk8jOXinqDolvzVhFQcW18D9769K4aQ/viewform?embedded=true" target="_blank"><h2 class="text-center text-xl font-normal leading-7">Kontaktiere uns in 2 Minuten</h2> </a> </div> </ul>  </nav>  <script>(function(){const closeOnClick = false;
+
+["DOMContentLoaded", "astro:after-swap"].forEach((event) => {
+  document.addEventListener(event, addListeners);
+});
+
+// Function to clone and replace elements
+function cloneAndReplace(element) {
+  const clone = element.cloneNode(true);
+  element.parentNode.replaceChild(clone, element);
+}
+
+function addListeners() {
+  // Clean up existing listeners
+  const oldMenuButton = document.getElementById("astronav-menu");
+  if (oldMenuButton) {
+    cloneAndReplace(oldMenuButton);
+  }
+
+  const oldDropdownMenus = document.querySelectorAll(".astronav-dropdown");
+  oldDropdownMenus.forEach((menu) => {
+    cloneAndReplace(menu);
+  });
+
+  // Mobile nav toggle
+  const menuButton = document.getElementById("astronav-menu");
+  menuButton && menuButton.addEventListener("click", toggleMobileNav);
+
+  // Dropdown menus
+  const dropdownMenus = document.querySelectorAll(".astronav-dropdown");
+  dropdownMenus.forEach((menu) => {
+    const button = menu.querySelector("button");
+    button &&
+      button.addEventListener("click", (event) =>
+        toggleDropdownMenu(event, menu, dropdownMenus)
+      );
+
+    // Handle Submenu Dropdowns
+    const dropDownSubmenus = menu.querySelectorAll(
+      ".astronav-dropdown-submenu"
+    );
+
+    dropDownSubmenus.forEach((submenu) => {
+      const submenuButton = submenu.querySelector("button");
+      submenuButton &&
+        submenuButton.addEventListener("click", (event) => {
+          event.stopImmediatePropagation();
+          toggleSubmenuDropdown(event, submenu);
+        });
+    });
+  });
+
+  // Clicking away from dropdown will remove the dropdown class
+  document.addEventListener("click", closeAllDropdowns);
+
+  if (closeOnClick) {
+    handleCloseOnClick();
+  }
+}
+
+function toggleMobileNav() {
+  [...document.querySelectorAll(".astronav-toggle")].forEach((el) => {
+    el.classList.toggle("hidden");
+  });
+}
+
+function toggleDropdownMenu(event, menu, dropdownMenus) {
+  toggleMenu(menu);
+
+  // Close one dropdown when selecting another
+  Array.from(dropdownMenus)
+    .filter((el) => el !== menu && !menu.contains(el))
+    .forEach(closeMenu);
+
+  event.stopPropagation();
+}
+
+function toggleSubmenuDropdown(event, submenu) {
+  event.stopPropagation();
+  toggleMenu(submenu);
+
+  // Close sibling submenus at the same nesting level
+  const siblingSubmenus = submenu
+    .closest(".astronav-dropdown")
+    .querySelectorAll(".astronav-dropdown-submenu");
+  Array.from(siblingSubmenus)
+    .filter((el) => el !== submenu && !submenu.contains(el))
+    .forEach(closeMenu);
+}
+
+function closeAllDropdowns(event) {
+  const dropdownMenus = document.querySelectorAll(".dropdown-toggle");
+  const dropdownParent = document.querySelectorAll(
+    ".astronav-dropdown, .astronav-dropdown-submenu"
+  );
+  const isButtonInsideDropdown = [
+    ...document.querySelectorAll(
+      ".astronav-dropdown button, .astronav-dropdown-submenu button, #astronav-menu"
+    ),
+  ].some((button) => button.contains(event.target));
+  if (!isButtonInsideDropdown) {
+    dropdownMenus.forEach((d) => {
+      // console.log("I ran", d);
+      // if (!d.contains(event.target)) {
+      d.classList.remove("open");
+      d.removeAttribute("open");
+      d.classList.add("hidden");
+      // }
+    });
+    dropdownParent.forEach((d) => {
+      d.classList.remove("open");
+      d.removeAttribute("open");
+      d.setAttribute("aria-expanded", "false");
+    });
+  }
+}
+
+function toggleMenu(menu) {
+  menu.classList.toggle("open");
+  const expanded = menu.getAttribute("aria-expanded") === "true";
+  menu.setAttribute("aria-expanded", expanded ? "false" : "true");
+  menu.hasAttribute("open")
+    ? menu.removeAttribute("open")
+    : menu.setAttribute("open", "");
+
+  const dropdownToggle = menu.querySelector(".dropdown-toggle");
+  const dropdownExpanded = dropdownToggle.getAttribute("aria-expanded");
+  dropdownToggle.classList.toggle("hidden");
+  dropdownToggle.setAttribute(
+    "aria-expanded",
+    dropdownExpanded === "true" ? "false" : "true"
+  );
+}
+
+function closeMenu(menu) {
+  // console.log("closing", menu);
+  menu.classList.remove("open");
+  menu.removeAttribute("open");
+  menu.setAttribute("aria-expanded", "false");
+  const dropdownToggles = menu.querySelectorAll(".dropdown-toggle");
+  dropdownToggles.forEach((toggle) => {
+    toggle.classList.add("hidden");
+    toggle.setAttribute("aria-expanded", "false");
+  });
+}
+
+function handleCloseOnClick() {
+  const navMenuItems = document.querySelector(".astronav-items");
+  const navToggle = document.getElementById("astronav-menu");
+  const navLink = navMenuItems && navMenuItems.querySelectorAll("a");
+
+  const MenuIcons = navToggle.querySelectorAll(".astronav-toggle");
+
+  navLink &&
+    navLink.forEach((item) => {
+      item.addEventListener("click", () => {
+        navMenuItems?.classList.add("hidden");
+        MenuIcons.forEach((el) => {
+          el.classList.toggle("hidden");
+        });
+      });
+    });
+}
+})();</script> <div> <div class="hidden lg:flex items-center gap-4"> <a class="px-9 py-5 rounded-2xl border border-zinc-900 bg-white hover:bg-lime text-black hover:text-black inline-flex" href="https://docs.google.com/forms/d/e/1FAIpQLSfAv1b7wiozjBvVMwfzk8jOXinqDolvzVhFQcW18D9769K4aQ/viewform?embedded=true" target="_blank"><h2 class="text-center text-xl font-normal leading-7">Kontaktiere uns in 2 Minuten</h2> </a> </div> </div> </header>  </div> </nav> </div>  <main class="space-y-20"> <div class="max-w-screen-2xl mx-auto px-8 lg:px-10 xl:px-12">  <div class="relative flex flex-col-reverse items-center md:flex-row" id="hero"> <div class="row items-center py-5 md:w-6/12 md:pb-20 md:pt-10"> <div class="text-left space-y-3"> <h1 class="text-5xl font-medium leading-none md:text-6xl text-center md:text-left">Du liebst Wasser? <br> Wir finden den passenden <br> Job der dich glücklich macht</h1> <p class="mt-6 mb-8  text-xl font-normal leading-7 sm:mb-12 text-center md:text-left">Wir als Recruiter und Headhunter helfen dir bei deiner Jobsuche bei führenden Unternehmen in der Wasserwirtschaft. Und das alles - kostenlos!</p> <div class="w-full justify-center md:justify-start items-center inline-flex"> <a href="https://github.com/manulthanura/Positivus" target="_blank" class="px-8 py-5 bg-zinc-900 hover:bg-white rounded-2xl text-center text-white hover:text-black border text-xl font-normal leading-7">Kontaktiere uns
+</a> </div> </div> </div> <div class="flex items-center py-5 md:w-6/12 md:pb-20 md:pt-10"> <img src="/Hero.svg" width="100%" alt="Hero"> </div> </div>   </div> <div class="max-w-screen-2xl mx-auto px-8 lg:px-10 xl:px-12">  <div class="relative flex flex-col items-center md:flex-row" id="services"> <div class="grid place-items-center gap-5 mb-10 md:flex"> <h2 class="text-4xl sm:text-5xl px-1.5 font-medium bg-lime rounded-md"> Karrieremöglichkeiten </h2> <p class="text-xl font-normal text-center md:text-start lg:w-2/3"> Wir glauben fest daran: Der passende Job wartet auf dich, aber wie findest du diesen? Genau dorthin möchten wir dich führen – denn dein nächster Karriereschritt ist unser gemeinsames Ziel. </p> </div></div> <div class="flex-row items-center py-5"> <div class="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 gap-4"> <!-- card start--> <div class="h-[310px] p-12 bg-zinc-100 rounded-[45px] shadow-card border border-black justify-between items-center flex text-black"> <div class="flex-col justify-center items-start gap-[93px] inline-flex"> <div class="flex-col justify-start items-start flex"> <div class="px-[7px] bg-lime-300 rounded-[7px] flex-col justify-start items-start gap-2.5 flex"> <div class=" text-3xl font-medium">Jobwechsel gefällig?</div> </div> <div class="px-[7px] bg-lime-300 rounded-[7px] flex-col justify-start items-start gap-2.5 flex"> <div class="text-3xl font-medium"></div> </div> </div> <a class="justify-start items-center gap-[15px] inline-flex" href="./chancen"> <div class="w-[41px] h-[41px] relative"> <img class="w-[41px] h-[41px] left-0 top-0 absolute" src="./services/ag.svg"> </div> <div class="text-xl font-normal leading-7">Erfahre mehr</div> </a> </div> <div class="w-[210px] h-[170px] pt-0.5 pb-[1.95px] justify-center items-center flex"> <img class="hidden md:block" src="./services/01.svg"> </div> </div><div class="h-[310px] p-12 bg-lime rounded-[45px] shadow-card border border-black justify-between items-center flex text-black"> <div class="flex-col justify-center items-start gap-[93px] inline-flex"> <div class="flex-col justify-start items-start flex"> <div class="px-[7px] bg-lime-300 rounded-[7px] flex-col justify-start items-start gap-2.5 flex"> <div class=" text-3xl font-medium">Für Azubis</div> </div> <div class="px-[7px] bg-lime-300 rounded-[7px] flex-col justify-start items-start gap-2.5 flex"> <div class="text-3xl font-medium"></div> </div> </div> <a class="justify-start items-center gap-[15px] inline-flex" href="./chancen"> <div class="w-[41px] h-[41px] relative"> <img class="w-[41px] h-[41px] left-0 top-0 absolute" src="./services/ag.svg"> </div> <div class="text-xl font-normal leading-7">Erfahre mehr</div> </a> </div> <div class="w-[210px] h-[170px] pt-0.5 pb-[1.95px] justify-center items-center flex"> <img class="hidden md:block" src="./services/02.svg"> </div> </div><div class="h-[310px] p-12 bg-black rounded-[45px] shadow-card border border-black justify-between items-center flex text-white"> <div class="flex-col justify-center items-start gap-[93px] inline-flex"> <div class="flex-col justify-start items-start flex"> <div class="px-[7px] bg-lime-300 rounded-[7px] flex-col justify-start items-start gap-2.5 flex"> <div class=" text-3xl font-medium">Young-Talents</div> </div> <div class="px-[7px] bg-lime-300 rounded-[7px] flex-col justify-start items-start gap-2.5 flex"> <div class="text-3xl font-medium">von der Uni</div> </div> </div> <a class="justify-start items-center gap-[15px] inline-flex" href="./chancen"> <div class="w-[41px] h-[41px] relative"> <img class="w-[41px] h-[41px] left-0 top-0 absolute" src="./services/aw.svg"> </div> <div class="text-xl font-normal leading-7">Erfahre mehr</div> </a> </div> <div class="w-[210px] h-[170px] pt-0.5 pb-[1.95px] justify-center items-center flex"> <img class="hidden md:block" src="./services/03.svg"> </div> </div><div class="h-[310px] p-12 bg-zinc-100 rounded-[45px] shadow-card border border-black justify-between items-center flex text-black"> <div class="flex-col justify-center items-start gap-[93px] inline-flex"> <div class="flex-col justify-start items-start flex"> <div class="px-[7px] bg-lime-300 rounded-[7px] flex-col justify-start items-start gap-2.5 flex"> <div class=" text-3xl font-medium">Führungskräfte</div> </div> <div class="px-[7px] bg-lime-300 rounded-[7px] flex-col justify-start items-start gap-2.5 flex"> <div class="text-3xl font-medium"></div> </div> </div> <a class="justify-start items-center gap-[15px] inline-flex" href="./chancen"> <div class="w-[41px] h-[41px] relative"> <img class="w-[41px] h-[41px] left-0 top-0 absolute" src="./services/ag.svg"> </div> <div class="text-xl font-normal leading-7">Erfahre mehr</div> </a> </div> <div class="w-[210px] h-[170px] pt-0.5 pb-[1.95px] justify-center items-center flex"> <img class="hidden md:block" src="./services/04.svg"> </div> </div><div class="h-[310px] p-12 bg-lime rounded-[45px] shadow-card border border-black justify-between items-center flex text-black"> <div class="flex-col justify-center items-start gap-[93px] inline-flex"> <div class="flex-col justify-start items-start flex"> <div class="px-[7px] bg-lime-300 rounded-[7px] flex-col justify-start items-start gap-2.5 flex"> <div class=" text-3xl font-medium">Frauenpower</div> </div> <div class="px-[7px] bg-lime-300 rounded-[7px] flex-col justify-start items-start gap-2.5 flex"> <div class="text-3xl font-medium"></div> </div> </div> <a class="justify-start items-center gap-[15px] inline-flex" href="./chancen"> <div class="w-[41px] h-[41px] relative"> <img class="w-[41px] h-[41px] left-0 top-0 absolute" src="./services/ag.svg"> </div> <div class="text-xl font-normal leading-7">Erfahre mehr</div> </a> </div> <div class="w-[210px] h-[170px] pt-0.5 pb-[1.95px] justify-center items-center flex"> <img class="hidden md:block" src="./services/05.svg"> </div> </div><div class="h-[310px] p-12 bg-black rounded-[45px] shadow-card border border-black justify-between items-center flex text-white"> <div class="flex-col justify-center items-start gap-[93px] inline-flex"> <div class="flex-col justify-start items-start flex"> <div class="px-[7px] bg-lime-300 rounded-[7px] flex-col justify-start items-start gap-2.5 flex"> <div class=" text-3xl font-medium">Quereinstieg</div> </div> <div class="px-[7px] bg-lime-300 rounded-[7px] flex-col justify-start items-start gap-2.5 flex"> <div class="text-3xl font-medium"></div> </div> </div> <a class="justify-start items-center gap-[15px] inline-flex" href="./chancen"> <div class="w-[41px] h-[41px] relative"> <img class="w-[41px] h-[41px] left-0 top-0 absolute" src="./services/aw.svg"> </div> <div class="text-xl font-normal leading-7">Erfahre mehr</div> </a> </div> <div class="w-[210px] h-[170px] pt-0.5 pb-[1.95px] justify-center items-center flex"> <img class="hidden md:block" src="./services/06.svg"> </div> </div> <!-- card end--> </div> </div> <div class="flex-row items-center my-6 p-14 bg-zinc-100 rounded-[45px]"> <div class="grid grid-cols-1 md:grid-cols-2 gap-4"> <div class="justify-start items-center gap-[275px] flex"> <div class="flex-col justify-start items-start gap-[26px] inline-flex text-black"> <div class="text-3xl font-medium">Lass uns dich nach vorne bringen!</div> <div class="text-lg font-normal">"Wir glauben: um den passenden Job zu finden muss man manchmal über den Tellerrand hinausblicken. Das haben wir uns zur Mission gemacht und wollen dir in deiner Karriere den nächsten Schritt ermöglichen."</div> <a href="https://docs.google.com/forms/d/e/1FAIpQLSfAv1b7wiozjBvVMwfzk8jOXinqDolvzVhFQcW18D9769K4aQ/viewform?usp=sf_link" class="px-[35px] py-5 bg-zinc-900 hover:bg-lime text-white hover:text-black border rounded-[14px] justify-start items-start gap-2.5 inline-flex" target="_blank" rel="noopener noreferrer"> <div class="text-center text-xl font-normal leading-7">Kontaktiere uns</div> </a> </div> </div> <div class="hidden md:grid justify-items-center -m-20"> <img src="/services/Illustration.svg" width="50%" alt="cat"> </div> </div> </div>  </div> <div class="max-w-screen-2xl mx-auto px-8 lg:px-10 xl:px-12">  <div class="relative flex flex-col items-center md:flex-row" id="projects"> <div class="grid place-items-center gap-5 mb-10 md:flex"> <h2 class="text-4xl sm:text-5xl px-1.5 font-medium bg-lime rounded-md"> Blog </h2> <p class="text-xl font-normal text-center md:text-start lg:w-2/3"> Erfahre was uns voran treibt. </p> </div> </div> <div class="w-full p-12 bg-zinc-900 rounded-[45px] justify-start items-start gap-16 inline-flex text-white"> <div class="grid grid-cols-1 md:grid-cols-3 gap-2 divide-x-0 md:divide-x divide-y md:divide-y-0"> <div class="flex-col items-start gap-5 inline-flex px-2 md:px-6 py-6 md:py-2"> <div class="w-full text-lg font-normal">Der Fachkräftemangel in der deutschen Wasserwirtschaft gefährdet sowohl die kurz- als auch langfristige Funktionsfähigkeit der Branche. Ohne ausreichend qualifiziertes Personal drohen Verzögerungen bei wichtigen Projekten, eine Verschlechterung der Wasserqualität und steigende Kosten für Verbraucher. Gleichzeitig wird die Modernisierung der alternden Infrastruktur erschwert, was die Nachhaltigkeit und Innovationskraft der Branche hemmt. Um diesen Herausforderungen zu begegnen, sind gezielte Investitionen in Bildung, Umschulung und die Attraktivität der Branche unerlässlich, um die Zukunft der Wasserversorgung zu sichern.</div> <div class="justify-start items-center gap-[15px] inline-flex"> <div class="text-lime text-xl font-normal leading-7">Lerne mehr</div> <img src="/services/agc.svg" alt="arrow"> </div> </div> <div class="flex-col items-start gap-5 inline-flex px-2 md:px-6 py-6 md:py-2"> <div class="w-full text-lg font-normal">Die Arbeitswelt befindet sich in einem tiefgreifenden Wandel, der vor allem durch die digitale Transformation vorangetrieben wird. Technologien wie künstliche Intelligenz (KI), Automatisierung und das Internet der Dinge (IoT) haben bereits Einzug in zahlreiche Branchen gehalten und verändern die Art und Weise, wie wir arbeiten, grundlegend. Doch was bedeutet das für die Zukunft der Arbeit? Welche Chancen und Herausforderungen bringt die digitale Transformation mit sich?</div> <div class="justify-start items-center gap-[15px] inline-flex"> <div class="text-lime text-xl font-normal leading-7">Lerne mehr</div> <img src="/services/agc.svg" alt="arrow"> </div> </div> <div class="flex-col items-start gap-5 inline-flex px-2 md:px-6 py-6 md:py-2"> <div class="w-full text-lg font-normal">In den letzten Jahren steht das deutsche Personalwesen vor zunehmend komplexeren Herausforderungen. Der Fachkräftemangel zieht sich durch nahezu alle Branchen und macht es Unternehmen schwer, geeignete Talente zu finden, um die Lücken in ihren Teams zu schließen. Gerade in einer Zeit, in der technologische Entwicklungen rasant voranschreiten und der Bedarf an spezialisierten Fachkräften steigt, wird es immer schwieriger, die richtigen Mitarbeiter zu gewinnen und langfristig zu halten.</div> <div class="justify-start items-center gap-[15px] inline-flex"> <div class="text-lime text-xl font-normal leading-7">Lerne mehr</div> <img src="/services/agc.svg" alt="arrow"> </div> </div> </div> <!-- <div class="w-[186px] h-[0px] origin-top-left rotate-90 border border-white"></div> --> <!-- <div class="w-[186px] h-[0px] origin-top-left rotate-90 border border-white"></div> --> </div>  </div> <div class="max-w-screen-2xl mx-auto px-8 lg:px-10 xl:px-12">  <div class="relative flex flex-col items-center md:flex-row"> <div class="grid place-items-center gap-5 mb-10 md:flex"> <h2 class="text-4xl sm:text-5xl px-1.5 font-medium bg-lime rounded-md"> Prozess </h2> <p class="text-xl font-normal text-center md:text-start lg:w-2/3"> Schritt für Schritt Begleitung um deine Ziele zu erreichen! </p> </div> </div> <div class="my-6"> <div class="space-y-10"> <div id="accordion__item" class="accordion__item group h-[160px] bg-zinc-100 overflow-hidden w-full transition-all duration-500 mb-[30px] rounded-[45px] border border-dark shadow-[0px_5px_0px_#191a23]"> <button class="accordion__toggle w-full h-[160px] flex items-center justify-between p-[60px] cursor-pointer" id="Erstgespräch accordion__item menu button" aria-expanded="false" aria-controls="Erstgespräch accordion__item menu content"> <div class="flex items-center gap-[25px]"> <span class="hidden sm:block sm:text-6xl">01</span> Erstgespräch </div> <div class="bg-white w-[58px] h-[58px] flex justify-center items-center rounded-full border border-dark"> <div class="accordion__icon h-10 w-10 transition-transform duration-300 flex justify-center items-center relative" aria-hidden="true"></div> </div> </button> <div id="Erstgespräch accordion__item menu content" aria-labelledby="Erstgespräch accordion__item menu button " class="accordion__content px-[60px]"> <div class="w-full h-[2px] bg-black"></div> <p class="prose mb-4 mt-1 max-w-full pt-5 pb-[60px] transition-[height]"> Im Erstgespräch lernen wir dich und deine beruflichen Ziele kennen. Wir besprechen deine bisherigen Erfahrungen, Erwartungen und welche Art von Position am besten zu dir passt. So können wir den nächsten Schritt in deiner Karriere optimal planen. </p> </div> </div> <div id="accordion__item" class="accordion__item group h-[160px] bg-zinc-100 overflow-hidden w-full transition-all duration-500 mb-[30px] rounded-[45px] border border-dark shadow-[0px_5px_0px_#191a23]"> <button class="accordion__toggle w-full h-[160px] flex items-center justify-between p-[60px] cursor-pointer" id="Bewerbungsgespräch accordion__item menu button" aria-expanded="false" aria-controls="Bewerbungsgespräch accordion__item menu content"> <div class="flex items-center gap-[25px]"> <span class="hidden sm:block sm:text-6xl">02</span> Bewerbungsgespräch </div> <div class="bg-white w-[58px] h-[58px] flex justify-center items-center rounded-full border border-dark"> <div class="accordion__icon h-10 w-10 transition-transform duration-300 flex justify-center items-center relative" aria-hidden="true"></div> </div> </button> <div id="Bewerbungsgespräch accordion__item menu content" aria-labelledby="Bewerbungsgespräch accordion__item menu button " class="accordion__content px-[60px]"> <div class="w-full h-[2px] bg-black"></div> <p class="prose mb-4 mt-1 max-w-full pt-5 pb-[60px] transition-[height]"> Während des Bewerbungsgesprächs bereiten wir dich gründlich auf die Anforderungen der Position und des Unternehmens vor. Wir unterstützen dich dabei, deine Stärken hervorzuheben und geben dir wertvolle Tipps, damit du im Gespräch überzeugen kannst. </p> </div> </div> <div id="accordion__item" class="accordion__item group h-[160px] bg-zinc-100 overflow-hidden w-full transition-all duration-500 mb-[30px] rounded-[45px] border border-dark shadow-[0px_5px_0px_#191a23]"> <button class="accordion__toggle w-full h-[160px] flex items-center justify-between p-[60px] cursor-pointer" id="Arbeitsvertrag accordion__item menu button" aria-expanded="false" aria-controls="Arbeitsvertrag accordion__item menu content"> <div class="flex items-center gap-[25px]"> <span class="hidden sm:block sm:text-6xl">03</span> Arbeitsvertrag </div> <div class="bg-white w-[58px] h-[58px] flex justify-center items-center rounded-full border border-dark"> <div class="accordion__icon h-10 w-10 transition-transform duration-300 flex justify-center items-center relative" aria-hidden="true"></div> </div> </button> <div id="Arbeitsvertrag accordion__item menu content" aria-labelledby="Arbeitsvertrag accordion__item menu button " class="accordion__content px-[60px]"> <div class="w-full h-[2px] bg-black"></div> <p class="prose mb-4 mt-1 max-w-full pt-5 pb-[60px] transition-[height]"> Nachdem du den Auswahlprozess erfolgreich durchlaufen hast, begleiten wir dich bei der Vertragsgestaltung. Wir sorgen dafür, dass die Konditionen fair und transparent sind und zu einer langfristigen, erfolgreichen Zusammenarbeit mit deinem zukünftigen Arbeitgeber führen. </p> </div> </div> <div id="accordion__item" class="accordion__item group h-[160px] bg-zinc-100 overflow-hidden w-full transition-all duration-500 mb-[30px] rounded-[45px] border border-dark shadow-[0px_5px_0px_#191a23]"> <button class="accordion__toggle w-full h-[160px] flex items-center justify-between p-[60px] cursor-pointer" id="Weitere Betreuung accordion__item menu button" aria-expanded="false" aria-controls="Weitere Betreuung accordion__item menu content"> <div class="flex items-center gap-[25px]"> <span class="hidden sm:block sm:text-6xl">04</span> Weitere Betreuung </div> <div class="bg-white w-[58px] h-[58px] flex justify-center items-center rounded-full border border-dark"> <div class="accordion__icon h-10 w-10 transition-transform duration-300 flex justify-center items-center relative" aria-hidden="true"></div> </div> </button> <div id="Weitere Betreuung accordion__item menu content" aria-labelledby="Weitere Betreuung accordion__item menu button " class="accordion__content px-[60px]"> <div class="w-full h-[2px] bg-black"></div> <p class="prose mb-4 mt-1 max-w-full pt-5 pb-[60px] transition-[height]"> Auch nach deinem Start im neuen Job bleiben wir an deiner Seite. Wir stehen dir für Fragen und Anliegen zur Verfügung, unterstützen dich bei der Einarbeitung und begleiten dich dabei, dich erfolgreich in deinem neuen Arbeitsumfeld einzuleben. </p> </div> </div>  </div> </div> <div class="relative flex flex-col items-center md:flex-row pt-6"> <div class="grid place-items-center gap-5 mb-10 md:flex"> <h2 class="text-4xl sm:text-5xl px-1.5 font-medium bg-lime rounded-md"> Team </h2> <p class="text-xl font-normal text-center md:text-start lg:w-2/3"> Triff das erfahrene und kompetente Team, das hinter unserem erfolgreichen Recruiting und Headhunting steht. </p> </div> </div> <div class="flex-row items-center py-5" id="team"> <div class="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 gap-4"> <div class="h-[331px] px-[35px] py-10 bg-white rounded-[45px] shadow-card border border-zinc-900 flex-col justify-start items-start gap-2.5 inline-flex text-black"> <div class="flex-col justify-start items-start gap-7 flex"> <div class="self-stretch justify-start items-start inline-flex"> <div class="grow shrink basis-0 justify-start items-center gap-8 flex"> <div class="h-[102.82px] left-0 top-0 relative"> <img src="/team/c5.jpeg" alt="Siyar Süleyman"> </div> <div class="flex-col justify-end items-start inline-flex"> <div class="text-lg font-normal">Gründer und Geschäftsführer</div> <div class="text-xl font-medium">Siyar Süleyman</div> </div> </div>  <a href="/" class="text-blue-500 hover:underline">Link</a> </div> <hr class="w-full border border-black"> <p class="text-sm md:text-lg">Passionierter Wasseringenieur mit einem Auge für Lösungen - und nicht Problemen</p> </div> </div><div class="h-[331px] px-[35px] py-10 bg-white rounded-[45px] shadow-card border border-zinc-900 flex-col justify-start items-start gap-2.5 inline-flex text-black"> <div class="flex-col justify-start items-start gap-7 flex"> <div class="self-stretch justify-start items-start inline-flex"> <div class="grow shrink basis-0 justify-start items-center gap-8 flex"> <div class="h-[102.82px] left-0 top-0 relative"> <img src="/team/c4.JPG" alt="Tim Lehmkühler"> </div> <div class="flex-col justify-end items-start inline-flex"> <div class="text-lg font-normal">Key Account Manager</div> <div class="text-xl font-medium">Tim Lehmkühler</div> </div> </div>  <a href="/" class="text-blue-500 hover:underline">Link</a> </div> <hr class="w-full border border-black"> <p class="text-sm md:text-lg">Unsere Akquiseleitung - Hands-On Mentalität und ambitionierter Headhunter</p> </div> </div><div class="h-[331px] px-[35px] py-10 bg-white rounded-[45px] shadow-card border border-zinc-900 flex-col justify-start items-start gap-2.5 inline-flex text-black"> <div class="flex-col justify-start items-start gap-7 flex"> <div class="self-stretch justify-start items-start inline-flex"> <div class="grow shrink basis-0 justify-start items-center gap-8 flex"> <div class="h-[102.82px] left-0 top-0 relative"> <img src="/team/c3.jpeg" alt="Michael Braun"> </div> <div class="flex-col justify-end items-start inline-flex"> <div class="text-lg font-normal">Headhunter und Recruiter</div> <div class="text-xl font-medium">Michael Braun</div> </div> </div>  <a href="/" class="text-blue-500 hover:underline">Link</a> </div> <hr class="w-full border border-black"> <p class="text-sm md:text-lg">5+ years of experience in SEO and content creation. Proficient in keyword research and on-page optimization</p> </div> </div> </div> </div> <div class="w-full justify-center md:justify-end items-center inline-flex"> <button class="px-8 py-5 bg-zinc-900 hover:bg-white rounded-2xl text-center text-white hover:text-black border text-xl font-normal leading-7">Das ganze Team
+</button> </div>  </div> <!--
+<Container>
+<div class="relative flex flex-col items-center md:flex-row">
+    <Topic title="Erfahrungsberichte" description="Erfahre, was unsere zufriedenen Bewerber sagen: Lies unsere Referenzen und finde heraus, wie wir dich bei deiner Jobsuche unterstützen können." />
+</div>
+
+<div class="rounded-[45px] bg-black mb-[150px] text-white">
+    <SwiperSlider />
+</div>
+
+</Container>
+--> <div class="max-w-screen-2xl mx-auto px-8 lg:px-10 xl:px-12">  <div class="relative flex flex-col items-center md:flex-row"> <div class="grid place-items-center gap-5 mb-10 md:flex"> <h2 class="text-4xl sm:text-5xl px-1.5 font-medium bg-lime rounded-md"> Kontakt </h2> <p class="text-xl font-normal text-center md:text-start lg:w-2/3"> Verbinde dich mit uns und lass uns über deine nächsten Schritte sprechen. Wir kontaktieren dich innerhalb 24 Stunden - versprochen! </p> </div> </div> <div class="relative flex flex-col items-center md:flex-row my-6 bg-zinc-100 rounded-[45px]"> <div class="row items-center py-12 px-4 md:px-20 md:w-8/12 md:py-10"> <!-- Google Form embedded starts here --> <div style="max-width: 100%; overflow: hidden;"> <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfAv1b7wiozjBvVMwfzk8jOXinqDolvzVhFQcW18D9769K4aQ/viewform?embedded=true" width="100%" height="1000" frameborder="0" marginheight="0" marginwidth="0" style="border-radius: 10px; border: 1px solid #ccc; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+                Wird geladen…
+            </iframe> </div> <!-- Google Form embedded ends here --> </div> <div class="hidden md:grid md:justify-items-end md:w-4/12 md:py-2"> <img src="./clients/contact.svg" alt="c" width="80%"> </div> </div>  </div> </main>  <footer class="bg-lime bg-fixed bg-bottom text-black"> <div class="max-w-screen-2xl mx-auto px-8 lg:px-10 xl:px-12">  <div class="py-6"> <div class="flex flex-col items-center justify-between md:flex-row"> <div class="flex items-center space-x-3 rtl:space-x-reverse"> <img class="h-21" src="/Logo3.svg" alt="Logo"> </div> <div class="flex mt-4 md:m-0"> <div class="-mx-4">
+@ <span id="currentYear"></span> Ångestellt | Made with <a href="https://astro.build/" target="_blank" rel="noopener noreferrer" class="underline">Passion</a> </div> </div> </div> <!-- Add the Impressum link here --> <div class="text-center mt-4"> <a href="/impressum" class="underline text-black hover:text-gray-700">Impressum</a> </div> </div>  </div> </footer> <script>
+    const year = new Date().getFullYear();
+    document.getElementById("currentYear").innerHTML = `${year}`;
+</script> </body></html>
