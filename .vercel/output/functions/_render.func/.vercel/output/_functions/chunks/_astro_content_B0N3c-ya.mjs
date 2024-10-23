@@ -374,7 +374,7 @@ const collectionToEntryMap = createCollectionToGlobResultMap({
 });
 
 let lookupMap = {};
-lookupMap = {"blog":{"type":"content","entries":{"fachkraeftemangel-in-der-wasserwirtschaft":"/src/content/blog/fachkraeftemangel-deutschland.md","guardian-of-the-digital-realm-web-security":"/src/content/blog/zukunft-der-arbeit.md","unleash-creativity-with-these-cutting-edge-tablets":"/src/content/blog/herausforderungen-des-personalwesens.md"}}};
+lookupMap = {"blog":{"type":"content","entries":{"fachkraeftemangel-in-der-wasserwirtschaft":"/src/content/blog/fachkraeftemangel-deutschland.md","unleash-creativity-with-these-cutting-edge-tablets":"/src/content/blog/herausforderungen-des-personalwesens.md","guardian-of-the-digital-realm-web-security":"/src/content/blog/zukunft-der-arbeit.md"}}};
 
 const collectionNames = new Set(Object.keys(lookupMap));
 
