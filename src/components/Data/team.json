@@ -2,24 +2,24 @@
     "team":
     [
         {
-            "title": "CEO and Founder",
-            "name": "John Smith",
-            "description": "10+ years of experience in digital marketing. Expertise in SEO, PPC, and content strategy",
-            "profile": "/team/c1.png",
+            "title": "Gründer und Geschäftsführer",
+            "name": "Siyar Süleyman",
+            "description": "Passionierter Wasseringenieur mit einem Auge für Lösungen - und nicht Problemen",
+            "profile": "/team/c5.jpeg",
             "link": "/"
         },
         {
-            "title": "Director of Operations",
-            "name": "Jane Doe",
-            "description": "7+ years of experience in project management and team leadership. Strong organizational and communication skills",
-            "profile": "/team/c2.png",
+            "title": "Key Account Manager",
+            "name": "Tim Lehmkühler",
+            "description": "Unsere Akquiseleitung - Hands-On Mentalität und ambitionierter Headhunter",
+            "profile": "/team/c4.JPG",
             "link": "/"
         },
         {
-            "title": "Senior SEO Specialist",
-            "name": "Michael Brown",
+            "title": "Headhunter und Recruiter",
+            "name": "Michael Braun",
             "description": "5+ years of experience in SEO and content creation. Proficient in keyword research and on-page optimization",
-            "profile": "/team/c3.png",
+            "profile": "/team/c3.jpeg",
             "link": "/"
         }
 
@@ -28,33 +28,26 @@
     [
         {
             "index": 1,
-            "label": "Consultation",
-            "content": "During the initial consultation, we will discuss your business goals and objectives, target audience, and current marketing efforts. This will allow us to understand your needs and tailor our services to best fit your requirements."
+            "label": "Erstgespräch",
+            "content": "Im Erstgespräch lernen wir dich und deine beruflichen Ziele kennen. Wir besprechen deine bisherigen Erfahrungen, Erwartungen und welche Art von Position am besten zu dir passt. So können wir den nächsten Schritt in deiner Karriere optimal planen."
         },
         {
             "index": 2,
-            "label": "Research",
-            "content": "During the initial consultation, we will discuss your business goals and objectives, target audience, and current marketing efforts. This will allow us to understand your needs and tailor our services to best fit your requirements."
+            "label": "Bewerbungsgespräch",
+            "content": "Während des Bewerbungsgesprächs bereiten wir dich gründlich auf die Anforderungen der Position und des Unternehmens vor. Wir unterstützen dich dabei, deine Stärken hervorzuheben und geben dir wertvolle Tipps, damit du im Gespräch überzeugen kannst."
         },
         {
             "index": 3,
-            "label": "Implementation",
-            "content": "During the initial consultation, we will discuss your business goals and objectives, target audience, and current marketing efforts. This will allow us to understand your needs and tailor our services to best fit your requirements."
+            "label": "Arbeitsvertrag",
+            "content": "Nachdem du den Auswahlprozess erfolgreich durchlaufen hast, begleiten wir dich bei der Vertragsgestaltung. Wir sorgen dafür, dass die Konditionen fair und transparent sind und zu einer langfristigen, erfolgreichen Zusammenarbeit mit deinem zukünftigen Arbeitgeber führen."
         },
         {
             "index": 4,
-            "label": "Optimization",
-            "content": "During the initial consultation, we will discuss your business goals and objectives, target audience, and current marketing efforts. This will allow us to understand your needs and tailor our services to best fit your requirements."
-        },
-        {
-            "index": 5,
-            "label": "Reporting",
-            "content": "During the initial consultation, we will discuss your business goals and objectives, target audience, and current marketing efforts. This will allow us to understand your needs and tailor our services to best fit your requirements."
-        },
-        {
-            "index": 6,
-            "label": "Improvement",
-            "content": "During the initial consultation, we will discuss your business goals and objectives, target audience, and current marketing efforts. This will allow us to understand your needs and tailor our services to best fit your requirements."
+            "label": "Weitere Betreuung",
+            "content": "Auch nach deinem Start im neuen Job bleiben wir an deiner Seite. Wir stehen dir für Fragen und Anliegen zur Verfügung, unterstützen dich bei der Einarbeitung und begleiten dich dabei, dich erfolgreich in deinem neuen Arbeitsumfeld einzuleben."
         }
+        
+
+        
     ]
 }
